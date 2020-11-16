@@ -35,29 +35,37 @@ public class MainActivity extends AppCompatActivity implements Adaptador.pasoDat
 
         rellenar();
 
-        lista.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
     }
 
     private void rellenar() {
 
-        listado.add(new Item("Raul"));
-        listado.add(new Item("Javier"));
-        listado.add(new Item("Sergio"));
-        listado.add(new Item("Pedro"));
-        listado.add(new Item("Ramon"));
-        listado.add(new Item("Ivan"));
+        listado.add(new Item("Raul", false));
+        listado.add(new Item("Javier", false));
+        listado.add(new Item("Sergio", false));
+        listado.add(new Item("Pedro", false));
+        listado.add(new Item("Ramon", false));
+        listado.add(new Item("Ivan", false));
+        listado.add(new Item("Raul", false));
+        listado.add(new Item("Javier", false));
+        listado.add(new Item("Sergio", false));
+        listado.add(new Item("Pedro", false));
+        listado.add(new Item("Ramon", false));
+        listado.add(new Item("Ivan", false));
+
     }
 
     @Override
-    public void itemClick(int item) {
+    public void itemClick(int posicion, Item item) {
 
-        System.out.println(item);
+        //reset();
+        //System.out.println(posicion);
+        item.setColor(true);
+        //adaptador.notifyItemChanged(posicion);
+        //System.out.println(item.isColor());
+
+        //System.out.println(listado.size());
+        //for(Item fila : listado) System.out.println(fila.isColor());
+
 
     }
 }
