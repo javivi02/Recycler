@@ -1,6 +1,7 @@
 package com.example.recycler;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,15 @@ import java.util.ArrayList;
 
 public class Adaptador extends RecyclerView.Adapter<Adaptador.HolderAdapter> {
 
-    Context contexto;
-    ArrayList<Item> datos;
-    View vista;
+    private Context contexto;
+    private ArrayList<Item> datos;
+    private View vista;
+    private pasoDatos pasoDatos; //declaro la interfaz
 
     public Adaptador(ArrayList datos, Context contexto) {
         this.contexto = contexto;
         this.datos = datos;
+        pasoDatos = (pasoDatos) contexto;
     }
 
     @Override
@@ -34,15 +37,22 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.HolderAdapter> {
         holder.nombre.setText(actual.getNombre());
 
         /*
-        Manejamos el evento desde el propio adaptador
-         */
-
-        holder.nombre.setOnClickListener(new View.OnClickListener() {
+        holder.nombre.setOnClickListener(new View.OnClickListener() { //Manejamos del evento desde el propio adaptador
             @Override
             public void onClick(View view) {
 
                 view.setSelected(true);
-                System.out.println(actual.getNombre());
+
+                System.out.println(actual.getNombre() + " - posicion:" + position);
+                Log.v("test",actual.getNombre() + " - posicion:" + position);
+            }
+        });
+         */
+
+        holder.nombre.setOnClickListener(new View.OnClickListener() { //Manejo del evento a traves de interfaz de Callback
+            @Override
+            public void onClick(View view) {
+                pasoDatos.itemClick(position);
             }
         });
 
@@ -63,5 +73,14 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.HolderAdapter> {
             nombre = (TextView) vista.findViewById(R.id.txt_item);
 
         }
+    }
+
+    /*
+    Declaramos una interfaz de callback, para poder pasar lo que pulsemos del listado a la clase main y en esta utilizarlos
+     */
+
+    interface pasoDatos{
+
+        void itemClick(int posicion);
     }
 }

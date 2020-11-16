@@ -1,6 +1,7 @@
 package com.example.recycler;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Adaptador.pasoDatos {
 
     private TextView titulo;
     private RecyclerView lista;
@@ -30,8 +31,16 @@ public class MainActivity extends AppCompatActivity {
         lista.setLayoutManager(new LinearLayoutManager(this));
         lista.setAdapter(adaptador);
         lista.setHasFixedSize(true); // mejora rendimiento si el contenido no cambia de tamaño
+        //lista.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL)); //dibujo una linea entre cada elemento
 
         rellenar();
+
+        lista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 
@@ -43,5 +52,12 @@ public class MainActivity extends AppCompatActivity {
         listado.add(new Item("Pedro"));
         listado.add(new Item("Ramon"));
         listado.add(new Item("Ivan"));
+    }
+
+    @Override
+    public void itemClick(int item) {
+
+        System.out.println(item);
+
     }
 }
