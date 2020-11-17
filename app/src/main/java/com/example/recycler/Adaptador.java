@@ -48,10 +48,6 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.HolderAdapter> {
 //            }
 //        });
 
-        //reset();
-
-
-
         holder.nombre.setOnClickListener(new View.OnClickListener() { //Manejo del evento a traves de interfaz de Callback
             @Override
             public void onClick(View view) {
@@ -60,6 +56,9 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.HolderAdapter> {
             }
         });
 
+        /*
+         * Cambio de color de background
+         */
 
         if(datos.get(position).isColor()) holder.nombre.setBackground(contexto.getResources().getDrawable( R.drawable.item_seleccionado));
         else holder.nombre.setBackground(contexto.getResources().getDrawable( R.drawable.item_normal));
@@ -85,7 +84,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.HolderAdapter> {
     }
 
     /*
-    Declaramos una interfaz de callback, para poder pasar lo que pulsemos del listado a la clase main y en esta utilizarlos
+     * Declaramos una interfaz de callback, para poder pasar lo que pulsemos del listado a la clase main y en esta utilizarlos
      */
 
     interface pasoDatos{
