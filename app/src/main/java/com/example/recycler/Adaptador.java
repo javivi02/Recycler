@@ -28,7 +28,6 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.HolderAdapter> {
     @Override
     public HolderAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
         vista = LayoutInflater.from(contexto).inflate(R.layout.item_adaptador, parent, false);
-        System.out.println("hola");
         return new HolderAdapter(vista);
     }
 
@@ -51,21 +50,21 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.HolderAdapter> {
 
         //reset();
 
+
+
         holder.nombre.setOnClickListener(new View.OnClickListener() { //Manejo del evento a traves de interfaz de Callback
             @Override
             public void onClick(View view) {
 
                 pasoDatos.itemClick(position, item);
-
-                if(datos.get(position).isColor()) holder.nombre.setBackground(contexto.getResources().getDrawable( R.drawable.item_seleccionado));
-                else holder.nombre.setBackground(contexto.getResources().getDrawable( R.drawable.item_normal));
-
             }
         });
 
 
-    }
+        if(datos.get(position).isColor()) holder.nombre.setBackground(contexto.getResources().getDrawable( R.drawable.item_seleccionado));
+        else holder.nombre.setBackground(contexto.getResources().getDrawable( R.drawable.item_normal));
 
+    }
 
     @Override
     public int getItemCount() {
